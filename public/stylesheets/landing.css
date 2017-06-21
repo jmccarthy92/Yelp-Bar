@@ -1,0 +1,98 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    /*z-index is the z axis on the 3d plane z index 1 will come forward towards us*/
+    z-index: 1;
+    /*the position has to be something other than static or z index won't work*/
+    position: relative;
+    text-align: center;
+    /*this centers vertically the easiest way vh stands for viewheight*/
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      /*allow images to take up entire space*/
+      background-size: cover;
+      /*center images perfectly on page*/
+      background-position: 50% 50%;
+      /*no repeat vertically or horizontally*/ 
+      background-repeat: no-repeat;
+      opacity: 0;
+      z-index: 0;
+      /*allow us to fade images in and out name is imagAnimation (arbitrary)
+      than tell animation to last for 50 seconds and it's linear - same speed from
+      beginning to end, than tell to do it infinitely so slideshow never ends*/
+      animation: imageAnimation 50s linear infinite; 
+}
+
+/*CSS THAT ADDS BACKGROUND IMAGES TO SLIDESHOW*/
+.slideshow li:nth-child(1) { 
+  background-image: url(images/bar1.png) 
+}
+/*animation-delay will fade in after 10 seconds of the previous image*/
+.slideshow li:nth-child(2) { 
+  background-image: url(images/bar2.png);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(images/bar3.png);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(images/bar4.png);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(images/bar5.png);
+  animation-delay: 40s; 
+}
+
+/*takes @keyFrame secelector giving it an animation of
+imageAnimation which matches with value above in slideshow*/
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    /* gives us smooth transition as we fade from 0 to 1*/
+    animation-timing-function: ease-in;
+  }
+  10% {
+      /*let fade in at opacity of one*/
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+    /*broswers with no animation compatibility will just have one slide visible*/
+	opacity: 1;
+}

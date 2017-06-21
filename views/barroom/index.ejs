@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+
+<!--works like a div-->
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome To the BarRoom!</h1>
+            <p>View our Hand-picked Bars from all over the world!</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/barroom/new">Add New Bar!</a>
+            </p>
+        </div>
+
+       
+    
+    </header>
+    <!--will help our grid not come out wonky and out of place
+    it will place grid items more flexibly it doesn't matter whath eight
+    the grid adapts display: flex , and flex-wrap help our grids to adapt figures the minimum amount of space
+    for everythign to aligned pefectly-->
+    <div class="row">     
+         <div class="col-lg-12">
+             <div id="index-popular-header"> <h3>Our Most Popular Bars!</h3> </div>
+           
+         </div>
+    </div>
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+ 
+    
+        <% bars.forEach(function(bar){ %>
+            
+            <!--responsive will take up 6 units instead of 3 when the screen gets xs it will
+            shring to 1-->
+            <div class="col-md-3 col-sm-6">
+                
+                
+                <!--thumbnail bootstrap class which helps a grid item(card)-->
+                <div class="thumbnail">
+                    <img src="<%=bar.img %>"> 
+                    <div class="caption">
+                        <h4><%= bar.name %></h4>
+                    </div> 
+                    <p>
+                        <!--link for the descriptions-->
+                        <!--_id is the auto generated id in mongodb-->
+                        <a href="/barroom/<%= bar._id %>" class="btn btn-lg btn-success btn-block">More Info</a>
+                    </p>
+                </div>
+                
+            </div>
+        <% }) %>
+     </div>   
+</div>
+    
+<% include ../partials/footer %>

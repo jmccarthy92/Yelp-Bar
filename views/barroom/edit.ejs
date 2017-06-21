@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center;">Edit  <%=barroom.name%> </h1>
+        
+        <div style="width:30%; margin: 30px auto;">
+        <form action="/barroom/<%= barroom._id %>?_method=PUT" method="POST">
+            
+            <!--gives some auto spacing from the bootstrap class form-group-->
+            <div class="form-group">
+                <input class="form-control" type="text" name="barroom[name]" value="<%= barroom.name %>"> 
+            </div>
+            
+            <div class="form-group">
+                <!--storing as string saves formatting-->
+                <!--steps -->
+                <input class="form-control" type="number" name="barroom[price]" value="<%= barroom.price %>" min="0.01" step="0.01" > 
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control"type="text" name="barroom[img]" value="<%= barroom.img %>">
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control" type="text" name="barroom[description]" value="<%= barroom.description %>">
+            </div>
+          
+            <div class="form-group"> 
+                <button class="btn btn-lg btn-success btn-block">Submit</button>
+            </div>
+            
+            <a href="/barroom">Back to the BarRoom</a>
+        </form>
+        </div>
+        
+        
+    </div>
+
+
+</div>
+
+<% include ../partials/footer %>

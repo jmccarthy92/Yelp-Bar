@@ -1,0 +1,67 @@
+<% include ../partials/header %>
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-md-3">
+            <!--leads makes a paragraph stand out in bootstrap-->
+            <p class="lead">YelpBar</p>
+            <!--list-group container makes the 3 item side bar on the left side of tghe-->
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                 <!--img-responsive will scale it nicely to the parent element-->
+                 <img class="img-responsive" src="<%= bar.img %>">
+                 <div class="caption-full">
+                     <h4 class="pull-right">Avg Drink: $<%= bar.price%>/drink</h4>
+                     <h4><a><%= bar.name %></a></h1>
+                     <p><%= bar.description %> </p>
+                     <p><em>Submitted By <%= bar.author.username %></em></p>
+                     <!--first have to check if there's a currentUser  and it's not undefined-->
+                     <% if( currentUser && bar.author.id.equals(currentUser._id)) { %>
+                         <a class="btn btn-xs btn-warning" href="/barroom/<%= bar._id %>/edit">Edit</a>
+                         <form class="delete-form" action="/barroom/<%= bar._id %>?_method=DELETE" method="POST">
+                             <button class="btn btn-xs btn-danger">Delete</button>
+                         </form>
+                    <% } %>
+                 </div>
+            </div>
+            <!--adds a rounded border with a grey background-->
+            <div class="well">
+                <div class="text-right">
+                    <a href="/barroom/<%= bar._id%>/comments/new" class="btn btn-success"> Add New comment</a> 
+                </div>
+                <hr>
+                <% bar.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="pull-right">10 days ago </span>
+                            <p> <%= comment.text %> </p>
+                            <% if( currentUser && comment.author.id.equals(currentUser._id)) { %>
+                            <a class="btn btn-xs btn-warning" 
+                                href="/barroom/<%= bar._id %>/comments/<%= comment._id %>/edit">
+                                Edit</a>    
+                            <form class="delete-form" action="/barroom/<%= bar._id %>/comments/<%= comment._id %>?_method=DELETE" method=POST >
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                        
+                <% }) %>
+            </div>
+            
+        </div>
+    </div>
+
+  
+
+</div>
+
+<% include ../partials/footer %>
