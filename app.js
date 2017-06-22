@@ -18,8 +18,10 @@ var commentRoutes = require('./routes/comments'),
 
 // connected to the yelp bar database
 // mongoose.connect("mongodb://localhost/yelp_bar");
-mongoose.connect("mongodb://James:james@ds133922.mlab.com:33922/yelpbar");
+mongoose.connect(process.env.DATABASEURL);
+// mongoose.connect("mongodb://James:james@ds133922.mlab.com:33922/yelpbar");
 // mongodb://<dbuser>:<dbpassword>@ds133922.mlab.com:33922/yelpbar
+// console.log(process.env.DATABASEURL);  //refer to correct URL for given environment
 //
 // write ./mongod in the ~ directory to start mongoDB server
 
