@@ -17,7 +17,10 @@ var commentRoutes = require('./routes/comments'),
     indexRoutes   = require('./routes/index')
 
 // connected to the yelp bar database
-mongoose.connect("mongodb://localhost/yelp_bar");
+// mongoose.connect("mongodb://localhost/yelp_bar");
+mongoose.connect("mongodb://James:james@ds133922.mlab.com:33922/yelpbar");
+// mongodb://<dbuser>:<dbpassword>@ds133922.mlab.com:33922/yelpbar
+//
 // write ./mongod in the ~ directory to start mongoDB server
 
 app.use(bodyParser.urlencoded({extended: true} ) );
