@@ -18,7 +18,10 @@ var commentRoutes = require('./routes/comments'),
 
 // connected to the yelp bar database
 // mongoose.connect("mongodb://localhost/yelp_bar");
-mongoose.connect(process.env.DATABASEURL);
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_bar";
+// incase something happens url will equl to environment variable if it exists
+// if it doesn't exist it will be our backup with is our local db on cloud 9
+mongoose.connect(url);
 // mongoose.connect("mongodb://James:james@ds133922.mlab.com:33922/yelpbar");
 // mongodb://<dbuser>:<dbpassword>@ds133922.mlab.com:33922/yelpbar
 // console.log(process.env.DATABASEURL);  //refer to correct URL for given environment
