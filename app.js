@@ -24,7 +24,7 @@ var url = process.env.DATABASEURL || "mongodb://localhost/yelp_bar";
 mongoose.connect(url);
 // mongoose.connect("mongodb://James:james@ds133922.mlab.com:33922/yelpbar");
 // mongodb://<dbuser>:<dbpassword>@ds133922.mlab.com:33922/yelpbar
-// console.log(process.env.DATABASEURL);  //refer to correct URL for given environment
+console.log(process.env.DATABASEURL);  //refer to correct URL for given environment
 //
 // write ./mongod in the ~ directory to start mongoDB server
 

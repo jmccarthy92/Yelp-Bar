@@ -18,7 +18,7 @@ router.get("/",function(req,res){
         else {
             res.render("barroom/index",{bars: allBars});
         }
-    });
+    }); 
     
 });
 
